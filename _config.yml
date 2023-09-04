@@ -1,5 +1,5 @@
-title: Long Haul
-description: Long Form Jekyll theme built with SASS
+title: Quazi Marufur Rahman
+description: PhD in Robotic Vision | CV & AI Team Lead @ AMAG
 
 url: https://long-haul.netlify.app
 paginate_path: "blog/page:num/"
@@ -19,19 +19,20 @@ paginate: 5
 navigation:
     - title: Home
       url: /index.html
-    - title: About
-      url: /about
-    - title: Contact
-      url: /contact
+    - title: Research
+      url: /research
+    - title: Academic
+      url: /academic
+    - title: Industry
+      url: /industry
+    
+    
 
 social:
-    github: brianmaierjr
-    twitter: brianmaierjr
-    facebook: brianmaierjr
-    email: brimaidesigns@gmail.com
-    linkedin: brianmaierjr
+    github: qmaruf
+    twitter: maruf_q
+    email: maruf.csdu@gmail.com
+    linkedin: qmaruf
 
-google_analytics: "UA-58263416-1"
+# google_analytics: "UA-58263416-1"
 
-disqus:
-    shortname: brianmaierjr

@@ -13,7 +13,7 @@ body {
 
 	&:after {
 		z-index: -1;
-		background: white;
+		// background: white;
 		content: "";
 		display: block;
 		width: 100%;
@@ -31,6 +31,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0;
+	font-size: initial;
 }
 
 
@@ -59,15 +60,15 @@ HEADER STYLING
 ***************/
 
 .header {
-	height: 15em;
+	height: 10em;
 	position: relative;
-	padding-bottom: 2em;
+	padding-bottom: 0em;
 
 	.container {
 		position: relative;
 		top: 50%;
 		transform: translateY(-50%);
-		max-width: 800px;
+		max-width: 835px;
 		overflow: hidden;
 	}
 
@@ -94,7 +95,7 @@ HEADER STYLING
 
 				a {
 					color: white;
-					font-size: .9em;
+					font-size: 1.1em;
 					text-decoration: none;
 					padding: 0 .25em;
 
