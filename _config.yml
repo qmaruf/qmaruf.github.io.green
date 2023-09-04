@@ -21,8 +21,8 @@ navigation:
       url: /index.html
     - title: Research
       url: /research
-    - title: Academic
-      url: /academic
+    # - title: Academic
+    #   url: /academic
     - title: Industry
       url: /industry
     
