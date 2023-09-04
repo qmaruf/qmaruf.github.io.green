@@ -1,0 +1,11 @@
+version: '3'
+services:
+  jekyll:
+    image: jekyll/builder:4
+    volumes:
+      - .:/srv/jekyll
+    ports:
+      - "4000:4000"
+    # command: bash -c "bundle install && bundle exec jekyll serve && gem cleanup && bundle add webrick"
+    command: "jekyll serve --watch --force_polling"
+    tty: true
