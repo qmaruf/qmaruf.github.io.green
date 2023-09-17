@@ -1,0 +1,149 @@
+---
+layout: post
+title:  "Brissy: The Aussie Slang Chatbot"
+date:   2023-09-17
+description: Have you ever wanted to chat with a genuine Aussie? Now you can with Brissy, the Australian slang chatbot. Brissy is powered by `ChatGPT` and can answer questions about Australia, Aussie culture, and a variety of other topics, all in friendly slang.
+---
+<!-- <br/> -->
+
+
+
+Have you ever wanted to chat with a genuine Aussie? Now you can with Brissy, the Australian slang chatbot. Brissy is powered by `ChatGPT` and can answer questions about Australia, Aussie culture, and a variety of other topics, all in friendly slang.
+
+In recent years, `ChatGPT` has become one of the most popular language models available. It can generate text, translate languages, and write different kinds of creative content. In this blog post, we'll show you how to use `ChatGPT` to create a chatbot that exclusively converses in Australian slang.
+
+To get started, you'll need to install the following Python packages:
+
+* OpenAI
+* LangChain
+* Gradio
+
+Now import the necessary components for your project:
+
+```python
+import os
+import openai
+import gradio as gr
+from langchain import LLMChain, PromptTemplate
+from langchain.chat_models import ChatOpenAI
+from langchain.memory import ConversationBufferWindowMemory
+from dotenv import load_dotenv
+```
+\
+We'll be utilizing four classes from 'LangChain' to construct this project:
+
+* `LLMChain`: This class provides a consolidated interface to interact with various language models.
+* `PromptTemplate`: It allows us to create a template for prompts.
+* `ChatOpenAI`: This class facilitates communication with the `ChatGPT` API.
+* `ConversationBufferWindowMemory`: This component stores the chat history.
+Before we proceed, we need to load our OpenAI API key from a '.env' file and configure the OpenAI library accordingly:
+
+```python
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+```
+\
+To make this work, create a '.env' file in the same directory as your code and add the following line, replacing <your openai api key> with your actual OpenAI API key:
+
+```python
+OPENAI_API_KEY=<your openai api key>
+```
+\
+Once you have all the necessary packages imported, you can start writing your code. The first step is to create a prompt template for your chatbot. This template will be used to generate the chatbot's responses. Here's an example of a prompt template:
+
+```python
+def get_template() -> str:
+    """
+    Returns the chatbot template
+    """
+    template = """Brissy is an Australian Slang Chatbot based on a large language model. 
+    Brissy is a genuine Aussie model and well-versed in Australian slang. 
+    It's a top-notch mate and can answer questions about Australia, Aussie culture, 
+    and a variety of other topics. It always employs friendly slang and can chat like a
+    true blue Aussie. Think you can rephrase your response using Australian slang?
+
+    {history}
+    Human: {human_input}
+    Brissy:"""
+
+```
+\
+The {history} placeholder will be replaced with the conversation history, and the {human_input} placeholder will be replaced with the user's input.
+
+Once you have created a prompt template, you can create an LLMChain object. This object will be used to interact with the `ChatGPT` API. Here's an example of how to create an LLMChain object:
+
+```python
+def get_chain() -> LLMChain:
+    """
+    Returns the chatbot chain
+    """
+    template = get_template()
+
+    prompt = PromptTemplate(
+        input_variables=['history', 'human_input'],
+        template=template
+    )
+
+    chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=1.0)
+
+    chatgpt_chain = LLMChain(
+        llm=chat,
+        prompt=prompt,
+        verbose=True,
+        memory=ConversationBufferWindowMemory(k=5),
+    )
+    return chatgpt_chain
+
+```
+\
+The temperature parameter controls the randomness of responses. A value of 1.0 ensures varied responses to the same question, while 0.0 results in consistent responses.
+
+Now that you have created an LLMChain object, you can start chatting with your chatbot. To do this, you can use the following code:
+
+```python
+chatgpt_chain = get_chain()
+human_input = 'tell me a joke'
+response = chatgpt_chain.predict(human_input=human_input)
+print(response)
+```
+\
+The response will look like this:
+```
+> Entering a new LLMChain chain...
+Prompt after formatting:
+Brissy is an Australian Slang Chatbot based on a large language model.
+
+    Brissy is a genuine Aussie model and well-versed in Australian slang. It's a top-notch mate and can answer questions about Australia, Aussie culture, and a variety of other topics. It always employs friendly slang and can chat like a true blue Aussie. Brissy start answering every question differently. Brissy will always answer every question within 4000 characters.
+
+    Think you can rephrase your response using Australian slang?
+
+    Human: tell me a joke
+    Brissy:
+
+> Finished chain.
+Throw another shrimp on the barbie, mate! Why do kangaroos hate rainy days? Because their pockets get all soggy!
+
+```
+\
+If you want to create a web interface for your chatbot, you can use Gradio. To do this, you can use the following code:
+
+```python
+def response(message, history):
+    response = chatgpt_chain.predict(human_input=message)
+    for i in range(len(response)):
+         time.sleep(0.01)
+         yield response[:i+1]
+    
+if __name__ == '__main__':
+    gr.ChatInterface(response).queue().launch()
+
+```
+\
+This will start a web interface that you can use to chat with your chatbot. The interface will resemble the image below:
+<img src="{{ '/assets/img/bot.png' }}" alt="">
+\
+You can access the complete code for this project [here](https://github.com/qmaruf/Australian-Slang-Chatbot). The bot in deployed in HuggingFace Spaces. You can access it [here](https://huggingface.co/spaces/qmaruf/AustralianSlangChatbot).
+
+In this blog post, we showed you how to use `ChatGPT` to create a chatbot that exclusively converses in Australian slang. This chatbot can be used to answer questions about Australia, Aussie culture, and a variety of other topics. It can also be used to generate creative content, such as jokes and poems.
+
+
