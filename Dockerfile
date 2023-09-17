@@ -20,4 +20,4 @@ WORKDIR /usr/src/app
 
 EXPOSE 4000 80
 CMD bundle install && bundle exec
-CMD jekyll serve -d /_site --watch --force_polling -H 0.0.0.0 -P 4000 --livereload
+CMD jekyll serve -d /_site  --force_polling -H 0.0.0.0 -P 4000 --livereload

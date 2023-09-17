@@ -1,6 +1,6 @@
 ---
 layout: default
-title: My Home
+title: Industry
 ---
 <br/>
 
