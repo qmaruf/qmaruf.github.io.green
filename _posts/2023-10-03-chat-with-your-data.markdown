@@ -45,7 +45,17 @@ Here `length_function` measures the length of given chunks. We will use `len` as
 The `split_documents` method will return a list of `Document` objects. For example, here is the first `Document` object from the list. We can print this content using the print method: `print(splits[0])`
 
 ```text
-Document(page_content="Harry Potter and the Sorcerer's Stone\n\n\nCHAPTER ONE\n\nTHE BOY WHO LIVED\n\nMr. and Mrs. Dursley, of number four, Privet Drive, were proud to say\nthat they were perfectly normal, thank you very much. They were the last\npeople you'd expect to be involved in anything strange or mysterious,\nbecause they just didn't hold with such nonsense.\n\nMr. Dursley was the director of a firm called Grunnings, which made\ndrills. He was a big, beefy man with hardly any neck, although he did\nhave a very large mustache. Mrs. Dursley was thin and blonde and had\nnearly twice the usual amount of neck, which came in very useful as she\nspent so much of her time craning over garden fences, spying on the\nneighbors. The Dursleys had a small son called Dudley and in their\nopinion there was no finer boy anywhere.", metadata={'source': 'docs/potter1.txt'})
+Document(page_content="Harry Potter and the Sorcerer's Stone\n\n\nCHAPTER ONE\n\nTHE 
+BOY WHO LIVED\n\nMr. and Mrs. Dursley, of number four, Privet Drive, were proud to 
+say\nthat they were perfectly normal, thank you very much. They were the last\npeople
+you'd expect to be involved in anything strange or mysterious,\nbecause they just 
+didn't hold with such nonsense.\n\nMr. Dursley was the director of a firm called 
+Grunnings, which made\ndrills. He was a big, beefy man with hardly any neck, although
+he did\nhave a very large mustache. Mrs. Dursley was thin and blonde and had\nnearly 
+twice the usual amount of neck, which came in very useful as she\nspent so much of 
+her time craning over garden fences, spying on the\nneighbors. The Dursleys had a 
+small son called Dudley and in their\nopinion there was no finer boy anywhere.", 
+metadata={'source': 'docs/potter1.txt'})
 ```
 
 In this step, we will create a vector database to store the embeddings of the chunks. For any query, we search the vector database and extract the most similar chunks to the query. We will use Chroma vector db for this example.
@@ -77,11 +87,14 @@ Here `answers` contain the `k` most similar chunks to the query.
 
 We can check all the chunks using a `for` loop. Here is the first answer from the list.
 
-```text
+```
 Professor Flitwick, the Charms teacher, was a tiny little wizard who had
 to stand on a pile of books to see over his desk. At the start of their
 first class, he took the roll call, and when he reached Harry's name, he
-gave an excited squeak and toppled out of sight. Professor McGonagall was again different. Harry had been quite right to think she wasn't a teacher to cross. Strict and clever, she gave them a talking-to the moment they sat down in her first class.
+gave an excited squeak and toppled out of sight. Professor McGonagall was 
+again different. Harry had been quite right to think she wasn't a teacher 
+to cross. Strict and clever, she gave them a talking-to the moment they sat
+ down in her first class.
 ```
 
 Up to this point, we have created the vector database and searched the database using a query for relevant documents. Now we will use the ChatGPT API to chat with the content of the book. We will use `answers` as chat context.
@@ -189,8 +202,9 @@ for q in [q1, q2, q3]:
     response = qa({'question': q})
     print (f'Q: {q}')
     print (f'A: {response["answer"]}')
-    print ('\n\n')
+    print ('\n')
 ```
+
 
 ```text
 Q: Write the names of all of Harry Potters Teachers.
@@ -204,15 +218,21 @@ A: The names of Harry Potter's teachers mentioned in the given context are:
 6. Madam Hooch (unknown subject)
 7. Professor Quirrell (unknown subject)
 
-Please note that there may be other teachers at Hogwarts that are not mentioned in this context.
-
+Please note that there may be other teachers at Hogwarts that are not mentioned in 
+this context.
 
 Q: sort the name of the teacher based on how frequently they are mentioned
 A: Professor McGonagall is mentioned most frequently in the given context.
 
-
 Q: tell me more about this professor
-A: Professor McGonagall is described as strict and clever. She is a teacher at Hogwarts School of Witchcraft and Wizardry and teaches Transfiguration, which is described as complex and dangerous magic. She gives the students a talking-to in her first class, emphasizing the importance of taking her class seriously. She is also shown to be observant and recognizes Harry's talent as a Seeker in Quidditch, recommending him to the Gryffindor team captain. Additionally, she is a member of the staff and is seen interacting with other professors, such as Professor Flitwick.
+A: Professor McGonagall is described as strict and clever. She is a teacher at 
+Hogwarts School of Witchcraft and Wizardry and teaches Transfiguration, which 
+is described as complex and dangerous magic. She gives the students a talking-to
+in her first class, emphasizing the importance of taking her class seriously. 
+She is also shown to be observant and recognizes Harry's talent as a Seeker in 
+Quidditch, recommending him to the Gryffindor team captain. Additionally, she 
+is a member of the staff and is seen interacting with other professors, such 
+as Professor Flitwick.
 ```
 
 Well, it looks like `qa_chain` is able to remember the previous conversation and answer the questions based on the previous conversation.
