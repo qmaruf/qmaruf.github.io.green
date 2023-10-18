@@ -5,6 +5,8 @@ date: 2023-10-06
 description: Have you ever contemplated the possibility of engaging in a conversation with your data? Imagine conversing with a chatbot that possesses comprehensive knowledge about your dataset. This intriguing problem is the focus of this note, where we explore how to achieve it using the ChatGPT API.
 ---
 
+Demo https://qmaruf-talk-to-data.hf.space
+
 Have you ever contemplated the possibility of engaging in a conversation with your data? Imagine conversing with a chatbot that possesses comprehensive knowledge about your dataset. This intriguing problem is the focus of this note, where we explore how to achieve it using the ChatGPT API.
 
 To illustrate this concept, we will employ the first book of the Harry Potter series, "[Harry Potter and the Philosopher's Stone](https://github.com/amephraim/nlp/blob/master/texts/J.%20K.%20Rowling%20-%20Harry%20Potter%201%20-%20Sorcerer's%20Stone.txt)," as our dataset. Our goal is to engage in a conversation with the content of the book. To facilitate this, we will utilize [LangChain](https://www.langchain.com/), a powerful tool for parsing and interacting with data, in conjunction with the ChatGPT API.
