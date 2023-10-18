@@ -5,7 +5,7 @@ date: 2023-10-06
 description: Have you ever contemplated the possibility of engaging in a conversation with your data? Imagine conversing with a chatbot that possesses comprehensive knowledge about your dataset. This intriguing problem is the focus of this note, where we explore how to achieve it using the ChatGPT API.
 ---
 
-Demo https://qmaruf-talk-to-data.hf.space
+Demo [https://qmaruf-talk-to-data.hf.space](https://qmaruf-talk-to-data.hf.space)
 
 Have you ever contemplated the possibility of engaging in a conversation with your data? Imagine conversing with a chatbot that possesses comprehensive knowledge about your dataset. This intriguing problem is the focus of this note, where we explore how to achieve it using the ChatGPT API.
 
